@@ -1,0 +1,10 @@
+const express = require('express');
+const {httpGetData,httpGetDataByid,httpDeletebyId,httpAdd,httpEdit} = require('./contracts.controller');
+const verifyRequest = require('../../middleware');
+const contract_router = express.Router();
+contract_router.get('/',httpGetData);
+contract_router.get('/:id',httpGetDataByid);
+contract_router.delete('/:id',httpDeletebyId);
+contract_router.post('/',verifyRequest,httpAdd);
+contract_router.put('/:id',verifyRequest,httpEdit);
+module.exports = contract_router;
