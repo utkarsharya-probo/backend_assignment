@@ -12,8 +12,11 @@ async function httpGetData(req,res){
 }
 async function httpGetDataByid(req,res){
     try {
-       
-        const data = await getDataFromDBbyid(req.params.id);
+       const id = req.params.id;
+       const page = req.query.page || 1;
+       const limit = req.query.limit || 10;
+       const Begin_page = (page-1)*limit;
+        const data = await getDataFromDBbyid(id,Begin_page,limit);
         if(data.length == 0){
             res.status(404).json('no data found to corresponding id');
         }

@@ -8,10 +8,10 @@ async function getDataFromDB() {
 
  return rows; 
   }
-  async function getDataFromDBbyid(id) {
+  async function getDataFromDBbyid(id,page,limit) {
     
-    const query = 'SELECT * FROM contract WHERE userid = ? ';
-   const [rows] = await db.query(query,[id])
+    const query = `SELECT * FROM contract WHERE userid = ${id} LIMIT ${limit} OFFSET ${page}`;
+   const [rows] = await db.query(query)
    .catch(err=>console.log(err));
 
 return rows; 
